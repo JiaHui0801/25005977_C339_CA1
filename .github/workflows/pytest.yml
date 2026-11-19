@@ -1,24 +1,31 @@
-name: Shopping cart unit tests
+name: Shopping Cart Unit Tests
 
-on:
-  push:
-    paths:
-      - '**.py'
-      - '.github/workflows/pytest.yml'
-  workflow_dispatch:
-
-permissions:
-  contents: read
+on: push
 
 jobs:
-  unit-tests:
+  test:
     runs-on: ubuntu-latest
+    
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - name: Display Student Name
+        run: echo "Student - Oh Jia Hui"
+
+      - name: Display Module
+        run: echo "Module - C339 Software Testing and Analytics"
+
+      - name: Display Message
+        run: echo "My GitHub Actions workflow is running automatically."
+
+      - name: Get Project Files
+        uses: actions/checkout@v4
+
+      - name: Set Up Python
+        uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Install pytest
+
+      - name: Install Pytest
         run: python -m pip install pytest==8.4.2
-      - name: Run unit tests
+
+      - name: Run Unit Tests
         run: python -m pytest -v
